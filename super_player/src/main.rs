@@ -1,15 +1,27 @@
+mod media;
+
+use media::Playable;
+
 struct Audio(String);
 struct Video(String);
 
-
-trait Playable {
-    fn play(&self);
-
-    fn pause() {
-        println!("Paused!");
+impl Playable for Audio {
+    fn play(&self) {
+        println!("Now playing: {}", self.0);
     }
 }
 
-fn main(){
-    println!("Hello World")
+impl Playable for Video {
+    fn play(&self) {
+        println!("Now playing: {}", self.0);
+    }
+}
+
+fn main() {
+    println!("Super player");
+    let audio = Audio("Hotel California".to_string());
+    let video = Video("What If?".to_string());
+    audio.play();
+    video.play();
+    Audio::pause();
 }
